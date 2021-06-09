@@ -54,7 +54,7 @@ public class RegisterController extends HttpServlet {
 		        if (registerDao.validate(username, password)) {
 		        	HttpSession session = request.getSession();
 		        	session.setAttribute("username", username);
-		            RequestDispatcher dispatcher = request.getRequestDispatcher("login-success.jsp");
+		            RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
 		            dispatcher.forward(request, response);
 		        } else {
 		            throw new Exception("Login not successful..");
