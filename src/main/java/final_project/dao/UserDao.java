@@ -10,7 +10,7 @@ public class UserDao {
 
     public void saveUser(User user) {
         Transaction transaction = null;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        try (Session session = HibernateUtil.getSessionFactory().getCurrentSession()) {
             // start a transaction
             transaction = session.beginTransaction();
             // save the student object
@@ -29,7 +29,7 @@ public class UserDao {
 
         Transaction transaction = null;
         User user = null;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        try (Session session = HibernateUtil.getSessionFactory().getCurrentSession()) {
             // start a transaction
             transaction = session.beginTransaction();
             // get an user object
@@ -41,6 +41,7 @@ public class UserDao {
             }
             // commit transaction
             transaction.commit();
+            session.close();
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();

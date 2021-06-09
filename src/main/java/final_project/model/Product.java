@@ -17,23 +17,32 @@ public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-
+    
     @Column(name = "product_name")
     private String productName;
 
     @Column(name = "product_price")
-    private int productPrice;
+    private double productPrice;
+    
+    public Product() {
+    	
+    }
+
+    public Product(String productName, double productPrice) {
+    	setProductName(productName);
+    	setProductPrice(productPrice);
+    }
 
     public String getProductName() {
         return productName;
     }
-    public void getProductName(String productName) {
+    public void setProductName(String productName) {
         this.productName = productName;
     }
-    public int getProductPrice() {
+    public double getProductPrice() {
         return productPrice;
     }
-    public void setProductPrice(int productPrice) {
+    public void setProductPrice(double productPrice) {
         this.productPrice = productPrice;
     }
 }

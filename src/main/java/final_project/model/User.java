@@ -18,17 +18,20 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column(name = "first_name")
+    @Column(name = "first_name", length = 255)
     private String firstName;
 
-    @Column(name = "last_name")
+    @Column(name = "last_name", length = 255)
     private String lastName;
 
-    @Column(name = "user_name", unique = true)
+    @Column(name = "user_name", unique = true, length = 255)
     private String username;
 
-    @Column(name = "password")
+    @Column(name = "password", length = 255)
     private String password;
+    
+    @Column(name = "role", length = 255)
+    private String role;
     
     public User() {
     	
@@ -39,6 +42,7 @@ public class User implements Serializable {
     	setLastName(lastName);
     	setPassword(username);
     	setUsername(password);
+    	setRole();
     }
 
     public String getFirstName() {
@@ -65,4 +69,12 @@ public class User implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole() {
+		this.role = "user";
+	}
 }
