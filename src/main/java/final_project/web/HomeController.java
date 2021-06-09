@@ -29,7 +29,7 @@ public class HomeController extends HttpServlet {
         int itemCount = listProduct.size();
         
         int page = 1;
-        int productPerPage = 4;
+        int productPerPage = 9;
         int pageCount = (int)Math.ceil(itemCount / productPerPage) + 1;
         
         if(request.getParameter("currentPage") != null)
