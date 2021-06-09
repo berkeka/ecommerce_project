@@ -5,20 +5,26 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
 </head>
 <body>
- <c:forEach var="product" items="${listProduct}">
-	<div class="card">
-	  <div class="card-header">
-	    Featured
-	  </div>
+<div class="m-4">
+	 <c:forEach var="product" items="${listProduct}">
+	<div class="card m-4" style="width: 18rem;">
 	  <div class="card-body">
-	    <h5 class="card-title">Special title treatment</h5>
-	    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-	    <a href="#" class="btn btn-primary">Go somewhere</a>
+	    <h5 class="card-title">${product.productName}</h5>
+	    <h6 class="card-subtitle mb-2 text-muted">${product.productPrice}</h6>
+	    <a href="#" class="card-link">Card link</a>
 	  </div>
 	</div>
- </c:forEach>
+	 </c:forEach>
+	 
+	 <nav aria-label="Page navigation">
+	  <ul class="pagination">
+	    <c:forEach begin="1" end='<%= Integer.parseInt(request.getAttribute("pageCount").toString())%>' varStatus="loop">
+	    	<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/?currentPage=${loop.index}">${loop.index}</a></li>
+		</c:forEach>
+	  </ul>
+	</nav>
+</div>
 </body>
 </html>

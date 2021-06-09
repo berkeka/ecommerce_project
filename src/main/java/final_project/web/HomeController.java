@@ -24,8 +24,30 @@ public class HomeController extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //List < Product > listProduct = productDao.getAllProduct();
-        //request.setAttribute("listProduct", listProduct);
+        List < Product > listProduct = productDao.getAllProduct();
+
+        int itemCount = listProduct.size();
+        
+        int page = 1;
+        int productPerPage = 4;
+        int pageCount = (int)Math.ceil(itemCount / productPerPage) + 1;
+        
+        if(request.getParameter("currentPage") != null)
+            page = Integer.parseInt(request.getParameter("currentPage"));
+        
+        int startIndex = (page - 1)* productPerPage;
+        int endIndex = startIndex + productPerPage;
+        
+        if (endIndex - 1 >= itemCount) {
+        	endIndex = itemCount;
+        }
+        
+        List<Product> paginatedList = listProduct.subList(startIndex, endIndex);
+        
+        request.setAttribute("pageCount", pageCount);
+        request.setAttribute("listProduct", paginatedList);
+        request.setAttribute("currentPage", page);
+        
         RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
         dispatcher.forward(request, response);
 	}
