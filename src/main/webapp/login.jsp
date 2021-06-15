@@ -17,7 +17,7 @@
      name="username" required>
    </div>
    <div class="form-group">
-    <label for="uname">Passwordd:</label> <input type="password"
+    <label for="uname">Password:</label> <input type="password"
      class="form-control" id="password" placeholder="Password"
      name="password" required>
    </div>
