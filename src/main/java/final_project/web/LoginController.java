@@ -48,8 +48,11 @@ public class LoginController extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
-        if (loginDao.validate(username, password)) {
+        int userID = loginDao.validate(username, password);
+        
+        if (userID != -1) {
         	HttpSession session = request.getSession();
+        	session.setAttribute("userID", userID);
         	session.setAttribute("username", username);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/");
             dispatcher.forward(request, response);

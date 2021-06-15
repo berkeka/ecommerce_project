@@ -45,6 +45,10 @@ public class User implements Serializable {
     	setRole();
     }
 
+    public int getId() {
+        return id;
+    }
+    
     public String getFirstName() {
         return firstName;
     }

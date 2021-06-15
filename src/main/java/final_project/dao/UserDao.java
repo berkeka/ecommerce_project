@@ -25,7 +25,7 @@ public class UserDao {
         }
     }
 
-    public boolean validate(String userName, String password) {
+    public int validate(String userName, String password) {
 
         Transaction transaction = null;
         User user = null;
@@ -37,7 +37,7 @@ public class UserDao {
                 .uniqueResult();
 
             if (user != null && user.getPassword().equals(password)) {
-                return true;
+                return user.getId();
             }
             // commit transaction
             transaction.commit();
@@ -48,7 +48,7 @@ public class UserDao {
             }
             e.printStackTrace();
         }
-        return false;
+        return -1;
     }
 
 }

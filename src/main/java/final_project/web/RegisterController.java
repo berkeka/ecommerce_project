@@ -51,8 +51,11 @@ public class RegisterController extends HttpServlet {
 
 		        registerDao.saveUser(user);
 		        
-		        if (registerDao.validate(username, password)) {
+		        int userID = registerDao.validate(username, password);
+		        
+		        if (userID != -1) {
 		        	HttpSession session = request.getSession();
+		        	session.setAttribute("userID", userID);
 		        	session.setAttribute("username", username);
 		            RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
 		            dispatcher.forward(request, response);
