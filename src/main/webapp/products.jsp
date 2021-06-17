@@ -17,7 +17,7 @@
 			  <div class="card-body">
 			    <h5 class="card-title">${product.productName}</h5>
 			    <h6 class="card-subtitle mb-2 text-muted">${product.productPrice}</h6>
-			    <a href="#" class="card-link">Card link</a>
+			    <a href="${pageContext.request.contextPath}/Product?prod_id=${product.id}" class="product-link">Product Page</a>
 			  </div>
 			</div>
     	  </div>

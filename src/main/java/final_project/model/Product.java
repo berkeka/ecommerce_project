@@ -32,6 +32,10 @@ public class Product implements Serializable {
     	setProductName(productName);
     	setProductPrice(productPrice);
     }
+    
+    public int getId() {
+        return id;
+    }
 
     public String getProductName() {
         return productName;
