@@ -5,14 +5,16 @@
 <html>
 <%@ include file="navbar.jsp" %>
 <body>
-	<h1>${product.productName}</h1>
-	<h2>${product.productPrice}</h2>
-	
-	<form>
-		<input type="hidden" id="prod_id" name="prod_id" value="${product.id}">
-		Product Count:  <input type="number" id="prod_count" name="prod_count" min="0" step="1" oninput="validity.valid||(value='');"><br>
-		<input type="button" value="Add to Cart" onclick='addToCart()'>
-	</form>
+	<div class="col-md-auto">
+		<h1>${product.productName}</h1>
+		<h2>${product.productPrice}</h2>
+		
+		<form>
+			<input type="hidden" id="prod_id" name="prod_id" value="${product.id}">
+			Product Count:  <input type="number" id="prod_count" name="prod_count" min="0" step="1" oninput="validity.valid||(value='');"><br>
+			<input type="button" value="Add to Cart" onclick='addToCart()'>
+		</form>
+   	</div>
 </body>
 <script>
 
