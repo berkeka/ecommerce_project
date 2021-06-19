@@ -54,10 +54,11 @@ public class LoginController extends HttpServlet {
         	HttpSession session = request.getSession();
         	session.setAttribute("userID", userID);
         	session.setAttribute("username", username);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/");
+            RequestDispatcher dispatcher = request.getRequestDispatcher(request.getContextPath());
             dispatcher.forward(request, response);
         } else {
-            throw new Exception("Login not successful..");
+        	request.setAttribute("error", "login-error");
+        	request.getRequestDispatcher("login.jsp").forward(request, response);
         }
     }
 }

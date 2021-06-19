@@ -1,6 +1,8 @@
 package final_project.web;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,10 +21,11 @@ public class PaymentController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	if (SessionController.sessionExists(request.getSession())) {
-            response.sendRedirect("payment.jsp");
+    		RequestDispatcher dispatcher = request.getRequestDispatcher("payment.jsp");
+            dispatcher.forward(request, response);
     	}
     	else {
-    		response.sendRedirect("home.jsp");
+    		response.sendRedirect(request.getContextPath());
     	}
 	}
 
