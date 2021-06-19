@@ -24,7 +24,8 @@ public class RegisterController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	if (SessionController.sessionExists(request.getSession())) {
-    		response.sendRedirect("home.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher(request.getContextPath());
+            dispatcher.forward(request, response);
     	}
     	else {
             response.sendRedirect("register.jsp");
@@ -57,10 +58,11 @@ public class RegisterController extends HttpServlet {
 		        	HttpSession session = request.getSession();
 		        	session.setAttribute("userID", userID);
 		        	session.setAttribute("username", username);
-		            RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
+		            RequestDispatcher dispatcher = request.getRequestDispatcher(request.getContextPath());
 		            dispatcher.forward(request, response);
 		        } else {
-		            throw new Exception("Login not successful..");
+		        	request.setAttribute("error", "login-error");
+		        	request.getRequestDispatcher("register.jsp").forward(request, response);
 		        }
 		    }
 
