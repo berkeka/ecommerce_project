@@ -20,6 +20,9 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}">Home</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="${pageContext.request.contextPath}/Order">Orders</a>
+        </li>
       </ul>
       <div class="d-flex mb-lg-0">
 	    <% Object user = session.getAttribute("user"); %>
