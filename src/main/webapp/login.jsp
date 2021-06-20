@@ -8,10 +8,10 @@
 </head>
 <%@ include file="navbar.jsp" %>
 <body>
- <% String error = (String)session.getAttribute("error"); %>
+ <% String error = (String)request.getAttribute("error"); %>
  <c:if test="${error != null}">
  	<div class="alert alert-danger alert-dismissible fade show" role="alert">
-	  Username or password is invalid!
+	  <%= error %>
 	  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 	</div>
  </c:if>

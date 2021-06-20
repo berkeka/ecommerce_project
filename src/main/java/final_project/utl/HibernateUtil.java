@@ -8,6 +8,8 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 
+import final_project.model.Item;
+import final_project.model.Order;
 import final_project.model.Product;
 import final_project.model.User;
 
@@ -36,6 +38,9 @@ public class HibernateUtil {
                 
                 configuration.addAnnotatedClass(User.class);
                 configuration.addAnnotatedClass(Product.class);
+                configuration.addAnnotatedClass(Order.class);
+                configuration.addAnnotatedClass(Item.class);
+
 
                 ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                     .applySettings(configuration.getProperties()).build();

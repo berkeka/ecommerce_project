@@ -22,7 +22,7 @@
         </li>
       </ul>
       <div class="d-flex mb-lg-0">
-	    <% String username = (String)session.getAttribute("username"); %>
+	    <% Object user = session.getAttribute("user"); %>
 	    <a style="" href="${pageContext.request.contextPath}/Cart">
 	   	    <button type="button" class="btn btn-primary">
 		        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
@@ -32,7 +32,7 @@
         	</button>
 	    </a>
 	    <c:choose>
-		    <c:when test='${username == null}'>
+		    <c:when test='${user == null}'>
 		        <a style="" href="${pageContext.request.contextPath}/login"><button class="btn btn-light ms-3">Login</button></a>
 		    	<a href="${pageContext.request.contextPath}/Register"><button class="btn btn-light ms-3">Register</button></a>
 		    </c:when>

@@ -52,16 +52,15 @@ public class RegisterController extends HttpServlet {
 
 		        registerDao.saveUser(user);
 		        
-		        int userID = registerDao.validate(username, password);
+		        User return_user = registerDao.validate(username, password);
 		        
-		        if (userID != -1) {
+		        if (return_user != null) {
 		        	HttpSession session = request.getSession();
-		        	session.setAttribute("userID", userID);
-		        	session.setAttribute("username", username);
+		        	session.setAttribute("user", return_user);
 		            RequestDispatcher dispatcher = request.getRequestDispatcher(request.getContextPath());
 		            dispatcher.forward(request, response);
 		        } else {
-		        	request.setAttribute("error", "login-error");
+		        	request.setAttribute("error", "Register error!");
 		        	request.getRequestDispatcher("register.jsp").forward(request, response);
 		        }
 		    }
