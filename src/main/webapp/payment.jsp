@@ -26,7 +26,7 @@ String error = (String) request.getAttribute("error");
 					</div>
 					<div class="form-group">
 						<p class="text-warning mb-0">Cardholder's Name</p>
-						<input type="text" name="name" placeholder="Name" size="17">
+						<input type="text" name="name" size="17">
 					</div>
 					<div class="form-group pt-2">
 						<div class="row d-flex">
@@ -37,13 +37,12 @@ String error = (String) request.getAttribute("error");
 							</div>
 							<div class="col-sm-3">
 								<p class="text-warning mb-0">Cvc</p>
-								<input type="password" id="cvc" name="cvv"
-									placeholder="&#9679;&#9679;&#9679;" size="1" minlength="3"
-									maxlength="3">
+								<input type="password" id="cvc" name="cvv" size="1"
+									minlength="3" maxlength="3">
 							</div>
-							<div class="col-sm-5 pt-0">
+							<div class="col-sm-2 pt-0">
 								<input class="btn btn-primary" value="Checkout"
-									onclick="checkCard()">
+									style='width: 10em' onclick="checkCard()">
 							</div>
 						</div>
 					</div>
