@@ -20,6 +20,9 @@
 					aria-labelledby="flush-heading"
 					data-bs-parent="#accordionFlushExample">
 					<div class="accordion-body">
+					<c:forEach var="item" items="${order.items}">
+						${item.product.productName } x ${item.quantity } ---> ${item.product.productPrice * item.quantity } <br>
+					</c:forEach>
 					</div>
 				</div>
 			</div>

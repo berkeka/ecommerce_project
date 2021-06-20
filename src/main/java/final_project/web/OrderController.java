@@ -2,7 +2,9 @@ package final_project.web;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import final_project.dao.ItemDao;
 import final_project.dao.OrderDao;
 import final_project.dao.UserDao;
 import final_project.model.Item;
@@ -25,11 +28,13 @@ public class OrderController extends HttpServlet {
 
 	public OrderDao orderDao;
 	public UserDao userDao;
+	public ItemDao itemDao;
 
 	public OrderController() {
 		super();
 		orderDao = new OrderDao();
 		userDao = new UserDao();
+		itemDao = new ItemDao();
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -39,20 +44,39 @@ public class OrderController extends HttpServlet {
 			User user = (User) session.getAttribute("user");
 			
 			List<Order> listOrder = new ArrayList<Order>();
-
+			List<Item> itemList = itemDao.getAllItem();
+			List<Order> newListOrder = new ArrayList<Order>();
+			
+			listOrder = orderDao.getAllOrders();
+			
 			if (user.getRole().equalsIgnoreCase("admin")) {
-				listOrder = orderDao.getAllOrders();
 				request.setAttribute("listOrder", listOrder);
-			} else {
-				listOrder = orderDao.getAllOrders();
-				List<Order> newListOrder = new ArrayList<Order>();
-				
 				for (Order order : listOrder) {
-					if(order.getUser().getId() == user.getId())
-						newListOrder.add(order);
+					Set<Item> orderItems = new HashSet<Item>();
+					for(Item item : itemList) {
+						if (item.getOrder().getId() == order.getId()) {
+							orderItems.add(item);
+						}
+					}
+					order.setItems(orderItems);
+					newListOrder.add(order);
 				}
-				request.setAttribute("listOrder", newListOrder);
+			} else {
+				for (Order order : listOrder) {
+					Set<Item> orderItems = new HashSet<Item>();
+					for(Item item : itemList) {
+						if (item.getOrder().getId() == order.getId()) {
+							orderItems.add(item);
+						}
+					}
+					if(order.getUser().getId() == user.getId()) {
+						order.setItems(orderItems);
+						newListOrder.add(order);
+					}
+				}
 			}
+			
+			request.setAttribute("listOrder", newListOrder);
 			request.getRequestDispatcher("orders.jsp").forward(request, response);
     	}
     	else {
