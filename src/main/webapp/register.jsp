@@ -9,6 +9,13 @@
 <%@ include file="navbar.jsp" %>
 <body>
  <div class="container col-md-2 col-md-offset-5 col-sm-offset-1" style="overflow: auto">
+  <% String error = (String)session.getAttribute("error"); %>
+ <c:if test="${error != null}">
+ 	<div class="alert alert-danger alert-dismissible fade show" role="alert">
+	  <%= error %>
+	  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+ </c:if>
   <h1>Register Form</h1>
   <form action="<%=request.getContextPath()%>/Register" method="post">
    <div class="form-group mt-3">
